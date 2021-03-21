@@ -1,12 +1,19 @@
 <?php
 
 require 'inc/setup.php';
+require 'controller/database/connect.php';
 require 'view/header.php';
+require 'view/alert.php';
 require 'class/form.php';
 
-$myForm = new Form('index.php', 'POST', 'submit');
+$myForm = new Form('controller/database/insert.php', 'POST', 'submit', "Daftar");
 $myForm->add_field('Nama', 'nama', 'text');
-$myForm->add_field('Program Studi', 'prodi', 'select', array("ti", "te"), array("D3 Teknik Informatika", "D3 Teknik Elektro"));
+$myForm->add_field('Email', 'email', 'email');
+$myForm->add_field('Password', 'password', 'password');
+$myForm->add_field('Program Studi', 'prodi', 'select', array("Teknik Informatika", "Teknik Elektro"), array("D3 Teknik Informatika", "D3 Teknik Elektro"));
+$myForm->add_field('Jenis Kelamin', 'gender', 'radio', array("L", "P"), array ("Laki-laki", "Perempuan"));
+$myForm->add_field('Alamat', 'alamat', 'textarea');
+$myForm->add_field(null, 'agreement', 'checkbox', array(1), array("Dengan mendaftar saya menyetujui persyaratan yang berlaku."));
 
 ?>
 
