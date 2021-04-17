@@ -1,0 +1,1 @@
+<footer class="navbar-dark bg-dark text-white-50 p-3">&copy; 2021</footer>
