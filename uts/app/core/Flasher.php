@@ -16,8 +16,8 @@ class Flasher {
             echo
             '
                 <div class="p-3 fixed-top">
-                    <div class="alert alert-'. $_SESSION['flash']['alert'] .'" role="alert">
-                        Data Mahasiswa ' . $_SESSION['flash']['pesan'] . ' '. $_SESSION['flash']['aksi'] .'
+                    <div class="alert alert-'. $_SESSION['flash']['alert'] .'" role="alert">' 
+                        . $_SESSION['flash']['pesan'] . ' '. $_SESSION['flash']['aksi'] .'
                     </div>
                 </div>
             ';

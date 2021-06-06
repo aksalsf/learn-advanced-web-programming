@@ -47,7 +47,7 @@ class Form
 	public function cetakForm()
 	{
 		?>
-		<form action="<?= $this -> action; ?>" method="<?= $this -> method; ?>">
+		<form action="<?= $this -> action; ?>" method="<?= $this -> method; ?>" enctype="multipart/form-data">
             <!-- Memulai perulangan field -->
             <?php for ($i = 0; $i < $this -> field; $i++): ?>
             <!-- 

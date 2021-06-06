@@ -1,0 +1,18 @@
+body {
+	font-family: "Poppins", sans-serif;
+}
+.banner-hero {
+	height: 560px;
+}
+.color-primary {
+	color: #23286b;
+}
+.bg-primary {
+	background-color: #23286b;
+}
+.color-secondary {
+	color: #e94a47;
+}
+.bg-secondary {
+	background-color: #e94a47;
+}
