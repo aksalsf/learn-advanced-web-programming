@@ -10,17 +10,15 @@ class Admin extends CI_Controller {
 			redirect('admin/dasbor');
 		}
         $data['title'] = "Dasbor Admin";
-		$this->load->view('template/header', $data);
-		$this->login_form_validation();
-		$this->load->view('template/footer', $data);
+		$this->login_form_validation($data);
 	}
-	private function login_form_validation()
+	private function login_form_validation($data)
 	{
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required');
 		if ($this->form_validation->run() == FALSE)
 		{
-			$this->load->view('admin/login');
+			$this->template->load('template', 'admin/login', $data);
 		}
 		else
 		{
@@ -32,8 +30,6 @@ class Admin extends CI_Controller {
 		if ($this->_login_check()) {
 			$data['title'] = "Dasbor Admin";
 			$data['username'] = $this->session->userdata('username');
-			$this->load->view('template/header', $data);
-			$this->load->view('admin/sidebar');
 			$this->_dasbor_data($this->dasborData);
 			// data dasbor
 			$data['orderan_baru'] = $this->dasborData['orderan_baru'];
@@ -44,8 +40,7 @@ class Admin extends CI_Controller {
 			$data['pendapatan_bulan_ini'] = $this->dasborData['pendapatan_bulan_ini'];
 			$data['pendapatan_bulan_lalu'] = $this->dasborData['pendapatan_bulan_lalu'];
 			$data['paling_laris'] = $this->dasborData['paling_laris'];
-			$this->load->view('admin/dasbor', $data);
-			$this->load->view('template/footer', $data);
+			$this->template->load('template_admin', 'admin/dasbor', $data);
 		}
 	}
 	private function _dasbor_data()
@@ -120,6 +115,7 @@ class Admin extends CI_Controller {
 				$model_login_token = $this->load->model('model_login_token');
 				if ($this->model_login_token->add_token($email)) {
 					$session_data = [
+						'email' => $email,
 						'username' => $user['nama'],
 						'token' => $this->model_login_token->get_token($email)
 					];
@@ -169,5 +165,32 @@ class Admin extends CI_Controller {
 		$this->_unset_login_data();
 		$this->session->set_flashdata('login_message', '<div class="alert alert-success">Berhasil logout!</div>');
 		redirect('admin');
+	}
+	public function pembelian()
+	{
+		$data['title'] = 'Data Pembelian';
+		// Model
+		$model_pembelian = $this->load->model('model_pembelian');
+		$model_ponsel = $this->load->model('model_ponsel');
+		$data['data_pembelian'] = $this->model_pembelian->lihat_semua_data();
+		$data['data_ponsel'] = $this->model_ponsel->get_ponsel();
+		// View
+		$this->template->load('template_admin', 'admin/pembelian', $data);
+	}
+	public function profil()
+	{
+		$data['title'] = 'Profil';
+		// Model
+		$model_user = $this->load->model('model_user');
+		$data['profil'] = $this->model_user->get_user($this->session->userdata('email'));
+		// View
+		$this->template->load('template_admin', 'admin/profil', $data);
+	}
+	public function ganti_password()
+	{
+		$email = $this->input->post('email');
+		$password = password_hash($this->input->post('password'), PASSWORD_BCRYPT, ['cost' => 12]);
+		$model_user = $this->load->model('model_user');
+		$this->model_user->ganti_password($email, $password);
 	}
 }

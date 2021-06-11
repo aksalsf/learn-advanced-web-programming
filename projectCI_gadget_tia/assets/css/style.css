@@ -16,3 +16,7 @@ body {
 .bg-secondary {
 	background-color: #e94a47;
 }
+.dataTables_length,
+.dataTables_filter {
+	margin-bottom: 1rem;
+}

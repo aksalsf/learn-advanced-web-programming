@@ -4,7 +4,7 @@
         <a href="<?= base_url('index.php/admin/dasbor'); ?>" class="text-white text-decoration-none mb-5" title="Dasbor">
             <i class="bi bi-columns-gap fs-3"></i>
         </a>
-        <a href="#" class="text-white text-decoration-none mb-5" title="Data Pembelian">
+        <a href="<?= base_url('index.php/admin/pembelian'); ?>" class="text-white text-decoration-none mb-5" title="Data Pembelian">
             <i class="bi bi-cart4 fs-3"></i>
         </a>
         <a href="#" class="text-white text-decoration-none mb-5" title="Data Barang">
@@ -12,6 +12,9 @@
         </a>
         <a href="#" class="text-white text-decoration-none mb-5" title="Data Merk">
             <i class="bi bi-patch-check fs-3"></i>
+        </a>
+        <a href="<?= base_url('index.php/admin/profil'); ?>" class="text-white text-decoration-none mb-5" title="Profil">
+            <i class="bi bi-person fs-3"></i>
         </a>
         <a href="<?= base_url('index.php/admin/logout'); ?>" class="text-white text-decoration-none" title="Logout">
             <i class="bi bi-box-arrow-right fs-3"></i>

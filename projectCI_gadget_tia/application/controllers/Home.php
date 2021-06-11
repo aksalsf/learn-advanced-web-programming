@@ -12,12 +12,7 @@ class Home extends CI_Controller {
 		$data['rekomendasi'] = $this -> model_ponsel -> get_recommended();
 		$data['merk'] = $this -> model_merk -> get_merk();
 		$data['ponsel'] = $this -> model_ponsel -> get_ponsel();
-
-		$this->load->view('template/header', $data);
-		$this->load->view('template/navbar');
-		$this->load->view('home/banner');
-		$this->load->view('home/rekomendasi', $data);
-		$this->load->view('home/merk_based', $data);
-		$this->load->view('template/footer');
+		// Template
+		$this->template->load('template', 'home', $data);
 	}
 }
